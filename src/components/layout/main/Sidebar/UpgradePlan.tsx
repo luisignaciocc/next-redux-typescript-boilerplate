@@ -1,7 +1,7 @@
-import React from 'react'
-import clsx from 'clsx'
-import { makeStyles } from '@material-ui/core'
-import { Typography, Button, colors } from '@material-ui/core'
+import React from 'react';
+import clsx from 'clsx';
+import { makeStyles } from '@material-ui/core';
+import { Typography, Button, colors } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,16 +24,16 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
   },
-}))
+}));
 
 type Props = {
-  className?: string
-}
+  className?: string;
+};
 
 const UpgradePlan = (props: Props) => {
-  const { className, ...rest } = props
+  const { className, ...rest } = props;
 
-  const classes = useStyles()
+  const classes = useStyles();
 
   return (
     <div {...rest} className={clsx(classes.root, className)}>
@@ -62,7 +62,7 @@ const UpgradePlan = (props: Props) => {
         </Button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default UpgradePlan
+export default UpgradePlan;

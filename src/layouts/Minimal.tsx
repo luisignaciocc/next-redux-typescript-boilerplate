@@ -1,7 +1,7 @@
-import React from 'react'
-import { makeStyles, Container } from '@material-ui/core'
+import React from 'react';
+import { makeStyles, Container } from '@material-ui/core';
 
-import { Topbar } from 'src/components/layout/minimal'
+import { Topbar } from 'src/components/layout/minimal';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -11,14 +11,14 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(4),
     height: '100%',
   },
-}))
+}));
 
 const Minimal = (props: {
-  children: React.ReactElement
+  children: React.ReactElement;
 }): React.ReactElement => {
-  const { children } = props
+  const { children } = props;
 
-  const classes = useStyles()
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>
@@ -27,7 +27,7 @@ const Minimal = (props: {
         <Container maxWidth="lg">{children}</Container>
       </main>
     </div>
-  )
-}
+  );
+};
 
-export default Minimal
+export default Minimal;

@@ -1,8 +1,6 @@
-const path = require('path')
+const path = require('path');
 
-const stylePath = [path.join(__dirname, 'src/styles')]
-
-// console.log(stylePath);
+const stylePath = [path.join(__dirname, 'src/styles')];
 
 module.exports = {
   sassOptions: {
@@ -11,4 +9,4 @@ module.exports = {
   env: {
     BASE_SERVICE_URL: process.env.BASE_SERVICE_URL,
   },
-}
+};

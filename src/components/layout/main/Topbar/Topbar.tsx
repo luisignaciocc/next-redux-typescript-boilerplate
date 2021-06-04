@@ -1,13 +1,17 @@
-import React, { useContext } from 'react'
-import clsx from 'clsx'
-import { makeStyles } from '@material-ui/core'
-import { AppBar, Toolbar, Hidden, IconButton } from '@material-ui/core'
-import MenuIcon from '@material-ui/icons/Menu'
-import InputIcon from '@material-ui/icons/Input'
-import Link from '../../../../components/Link'
-import Notification from './Notification'
-import SearchView from './SearchView'
-import { AuthContext } from 'src/contexts'
+import React from 'react';
+import clsx from 'clsx';
+import {
+  AppBar,
+  Toolbar,
+  Hidden,
+  IconButton,
+  makeStyles,
+} from '@material-ui/core';
+import MenuIcon from '@material-ui/icons/Menu';
+import InputIcon from '@material-ui/icons/Input';
+import { Link } from 'src/components/layout';
+import { useAppDispatch } from 'src/hooks';
+import { logoutAction } from 'src/redux/slices';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,42 +28,36 @@ const useStyles = makeStyles((theme) => ({
   signOutButton: {
     marginLeft: theme.spacing(1),
   },
-}))
+}));
 
 type Props = {
-  className?: string
-  onSidebarOpen: () => any
-}
+  className?: string;
+  onSidebarOpen: () => any;
+};
 
 const Topbar = (props: Props) => {
-  const { className, onSidebarOpen, ...rest } = props
+  const { className, onSidebarOpen, ...rest } = props;
 
-  const classes = useStyles()
-
-  const { token, handleLogout } = useContext(AuthContext)
+  const classes = useStyles();
+  const dispatch = useAppDispatch();
 
   const handleSignOut = () => {
-    if (token) {
-      handleLogout()
-    }
-  }
+    dispatch(logoutAction());
+  };
 
   return (
-    <AppBar {...rest} className={clsx(classes.root, className)}>
+    <AppBar color="inherit" {...rest} className={clsx(classes.root, className)}>
       <Toolbar>
         <Hidden mdDown>
           <Link href="/">
             <img
               className={classes.brand}
               alt="Logo"
-              src="/images/acot-logo-blanco.png"
+              src="/images/nextjs-3.svg"
             />
           </Link>
         </Hidden>
-        <div className={classes.flexGrow}>
-          <SearchView />
-        </div>
-        <Notification />
+        <div className={classes.flexGrow}></div>
         <Hidden mdDown>
           <IconButton
             className={classes.signOutButton}
@@ -76,7 +74,7 @@ const Topbar = (props: Props) => {
         </Hidden>
       </Toolbar>
     </AppBar>
-  )
-}
+  );
+};
 
-export default Topbar
+export default Topbar;

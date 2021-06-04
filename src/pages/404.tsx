@@ -1,6 +1,6 @@
-import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import { Grid, Typography } from '@material-ui/core'
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import { Grid, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,10 +16,10 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: '100%',
     width: 560,
   },
-}))
+}));
 
 const ErrorPage: () => React.ReactElement = () => {
-  const classes = useStyles()
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>
@@ -41,7 +41,7 @@ const ErrorPage: () => React.ReactElement = () => {
         </Grid>
       </Grid>
     </div>
-  )
-}
+  );
+};
 
-export default ErrorPage
+export default ErrorPage;

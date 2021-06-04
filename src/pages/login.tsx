@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { useAppSelector, useAppDispatch } from 'src/hooks'
+import React, { useState, useEffect } from 'react';
+import { useAppSelector, useAppDispatch } from 'src/hooks';
 import {
   Container,
   Grid,
@@ -12,13 +12,13 @@ import {
   // FormControlLabel,
   // Checkbox,
   IconButton,
-} from '@material-ui/core'
-import Visibility from '@material-ui/icons/Visibility'
-import VisibilityOff from '@material-ui/icons/VisibilityOff'
-import { signIn } from 'src/services/'
-import validator from 'validator'
-import { selectIsLoggedIn } from 'src/redux/slices'
-import { logInAction } from 'src/redux/actions/authActions'
+} from '@material-ui/core';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import { signIn } from 'src/services/';
+import validator from 'validator';
+import { selectIsLoggedIn } from 'src/redux/slices';
+import { loginAction } from 'src/redux/slices/authSlice';
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -49,70 +49,69 @@ const useStyle = makeStyles((theme) => ({
   submitButton: {
     marginTop: theme.spacing(2),
   },
-}))
+}));
 
 const LoginPage: () => React.ReactElement | null = () => {
-  const clases = useStyle()
+  const clases = useStyle();
 
-  const isLoged = useAppSelector(selectIsLoggedIn)
-  console.log('isLoged', isLoged)
-  const dispatch = useAppDispatch()
+  const isLoged = useAppSelector(selectIsLoggedIn);
+  const dispatch = useAppDispatch();
 
-  const [loading, setLoading] = useState(true)
-  const [isFetching, setIsFetching] = useState(false)
-  const [showPassword, setShowPassword] = useState(false)
-  const [formBody, setFormBody] = useState({ email: '', password: '' })
+  const [loading, setLoading] = useState(true);
+  const [isFetching, setIsFetching] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [formBody, setFormBody] = useState({ email: '', password: '' });
   const [formBodyErrors, setFormBodyErrors] = useState({
     email: '',
     password: '',
-  })
+  });
 
   const handleInputChange = (input: string, text: string) => {
-    setFormBody({ ...formBody, [input]: text })
-  }
+    setFormBody({ ...formBody, [input]: text });
+  };
 
   const handleShowPassword = () => {
-    setShowPassword(!showPassword)
-  }
+    setShowPassword(!showPassword);
+  };
 
   const handleSubmit = async (ev: any) => {
-    ev.preventDefault()
-    setIsFetching(true)
+    ev.preventDefault();
+    setIsFetching(true);
 
-    let hasErrors = false
-    const newFormBodyErrors = { email: '', password: '' }
+    let hasErrors = false;
+    const newFormBodyErrors = { email: '', password: '' };
 
     if (!formBody.email || formBody.email === '') {
-      newFormBodyErrors.email = 'Debes ingresar tu email'
-      hasErrors = true
+      newFormBodyErrors.email = 'Debes ingresar tu email';
+      hasErrors = true;
     } else if (!validator.isEmail(formBody.email)) {
-      newFormBodyErrors.email = 'Debes ingresar un email válido'
-      hasErrors = true
+      newFormBodyErrors.email = 'Debes ingresar un email válido';
+      hasErrors = true;
     }
     if (!formBody.password || formBody.password === '') {
-      newFormBodyErrors.password = 'Debes ingresar tu contraseña'
-      hasErrors = true
+      newFormBodyErrors.password = 'Debes ingresar tu contraseña';
+      hasErrors = true;
     }
 
-    setFormBodyErrors(newFormBodyErrors)
+    setFormBodyErrors(newFormBodyErrors);
     if (!hasErrors) {
-      const response = await signIn(formBody)
+      const response = await signIn(formBody);
       if (response.token) {
-        dispatch(logInAction(response.token))
+        dispatch(loginAction({ user: null, token: response.token }));
       } else {
-        setFormBodyErrors({ ...formBodyErrors, email: 'Error fetching' })
+        setFormBodyErrors({ ...formBodyErrors, email: 'Error fetching' });
       }
     }
-    setIsFetching(false)
-  }
+    setIsFetching(false);
+  };
 
   useEffect(() => {
     if (isLoged) {
-      window.location.href = '/redux-counter'
+      window.location.href = '/redux-counter';
     } else {
-      setLoading(false)
+      setLoading(false);
     }
-  }, [isLoged])
+  }, [isLoged]);
 
   return loading ? null : (
     <Container>
@@ -182,10 +181,10 @@ const LoginPage: () => React.ReactElement | null = () => {
         </Grid>
       </Grid>
     </Container>
-  )
-}
+  );
+};
 
-export default LoginPage
+export default LoginPage;
 
 /* <FormControl>
   <InputLabel htmlFor="my-input">Email address</InputLabel>

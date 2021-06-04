@@ -1,12 +1,11 @@
-import React, { useContext, useState, useEffect } from 'react'
-import clsx from 'clsx'
-import { makeStyles } from '@material-ui/core'
-import { Avatar, Typography } from '@material-ui/core'
-import { AuthContext } from 'src/contexts'
+import React, { /* useContext, */ useState, useEffect } from 'react';
+import clsx from 'clsx';
+import { makeStyles } from '@material-ui/core';
+import { Avatar, Typography } from '@material-ui/core';
 
 type Props = {
-  className?: string
-}
+  className?: string;
+};
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,33 +29,30 @@ const useStyles = makeStyles((theme) => ({
   name: {
     marginTop: theme.spacing(1),
   },
-}))
+}));
 
 const Profile = (props: Props) => {
-  const { className, ...rest } = props
+  const { className, ...rest } = props;
 
-  const classes = useStyles()
+  const classes = useStyles();
 
-  const { profile } = useContext(AuthContext)
   const [user, setUser] = useState({
     name: 'Cargando...',
     surname: '',
     avatar: '',
     bio: '',
-  })
+  });
 
   useEffect(() => {
-    // console.log(profile);
-
-    if (profile) {
-      setUser({
-        name: profile.name.split(' ')[0],
-        surname: profile.surname,
-        avatar: profile.avatar ?? '',
-        bio: profile.isAdmin ? 'System Admin' : 'Admin',
-      })
-    }
-  }, [profile])
+    //   if (profile) {
+    setUser({
+      name: 'Test',
+      surname: 'User',
+      avatar: '',
+      bio: 'Admin',
+    });
+    //   }
+  }, []);
 
   return (
     <div {...rest} className={clsx(classes.root, className)}>
@@ -85,7 +81,7 @@ const Profile = (props: Props) => {
       </Typography>
       <Typography variant="body2">{user.bio}</Typography>
     </div>
-  )
-}
+  );
+};
 
-export default Profile
+export default Profile;

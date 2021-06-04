@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
 type Props = {
-  children: any
-}
+  children: any;
+};
 
 const DefaultLayout = ({ children }: Props): React.ReactElement => {
-  return <>{children}</>
-}
+  return <>{children}</>;
+};
 
-export default DefaultLayout
+export default DefaultLayout;

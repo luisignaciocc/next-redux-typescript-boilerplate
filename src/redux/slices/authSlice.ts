@@ -1,48 +1,45 @@
-import { createSlice /* PayloadAction */ } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { logInAction, logOutAction } from 'src/redux/actions/authActions'
-import type { RootState } from 'src/redux/store'
+import type { RootState } from 'src/redux/store';
 
 export interface AuthState {
-  isLoggedIn: boolean
-  user: any
-  signUpdata?: any
-  loginData?: any
+  isLoggedIn: boolean;
+  user: any;
+  token: string | null;
 }
 
 const initialState: AuthState = {
   isLoggedIn: false,
   user: null,
-}
+  token: null,
+};
 
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    /* setToken: (state, action: PayloadAction<string>) => {
-      state.token = action.payload,
-      state.isLoged = true
-    }, */
+    loginAction: (
+      state,
+      action: PayloadAction<{ token: string; user: any }>,
+    ) => {
+      state.user = action.payload.user;
+      state.token = action.payload.token;
+      state.isLoggedIn = true;
+    },
+    logoutAction: (state) => {
+      state.user = null;
+      state.token = null;
+      state.isLoggedIn = false;
+    },
   },
-  extraReducers: (builder) =>
-    builder
-      // builder의 addCase는 typescript의 타입 추론 사용할 때 편하다.
-      .addCase(logInAction.pending, (_state, _action) => {})
-      .addCase(logInAction.fulfilled, (state, action) => {
-        state.user = action.payload
-        state.isLoggedIn = true
-      })
-      .addCase(logInAction.rejected, (_state, _action) => {})
+});
 
-      .addCase(logOutAction.pending, (_state, _action) => {})
-      .addCase(logOutAction.fulfilled, (_state, _action) => {})
-      .addCase(logOutAction.rejected, (_state, _action) => {})
-      .addDefaultCase(() => {}),
-})
-
-// export const { setToken } = authSlice.actions
+export const { loginAction, logoutAction } = authSlice.actions;
 
 export const selectIsLoggedIn = (state: RootState): boolean =>
-  state.auth.isLoggedIn
+  state.auth.isLoggedIn;
 
-export const authReducer = authSlice.reducer
+export const selectToken = (state: RootState): string | null =>
+  state.auth.token;
+
+export const authReducer = authSlice.reducer;

@@ -1,7 +1,7 @@
-import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import { Grid, Typography } from '@material-ui/core'
-import { NextPage } from 'next'
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import { Grid, Typography } from '@material-ui/core';
+import { NextPage } from 'next';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,53 +17,53 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: '100%',
     width: 560,
   },
-}))
+}));
 
 type Props = {
-  statusCode: number
-  statusMessage?: string | null
-}
+  statusCode: number;
+  statusMessage?: string | null;
+};
 
 const Error: NextPage<Props> = ({ statusCode, statusMessage }) => {
-  const classes = useStyles()
+  const classes = useStyles();
 
   const getErrorTitle = () => {
     switch (statusCode) {
       case 404:
-        return 'The page you are looking for isn’t here.'
+        return 'The page you are looking for isn’t here.';
       case 401:
-        return 'Este código ya fue utilizado o ha expirado.'
+        return 'Este código ya fue utilizado o ha expirado.';
       case 409:
-        return statusMessage
+        return statusMessage;
 
       default:
-        return 'The page you are looking for isn’t here.'
+        return 'The page you are looking for isn’t here.';
     }
-  }
+  };
   const getErrorDescription = () => {
     switch (statusCode) {
       case 404:
-        return 'You either tried some shady route or you came here by mistake.\nWhichever it is, try using the navigation'
+        return 'You either tried some shady route or you came here by mistake.\nWhichever it is, try using the navigation';
       case 401:
-        return 'Si estas intentando recuperar tu contraseña solicita un nuevo código desde tu app.'
+        return 'Si estas intentando recuperar tu contraseña solicita un nuevo código desde tu app.';
       case 409:
-        return ''
+        return '';
       default:
-        return 'You either tried some shady route or you came here by mistake.\nWhichever it is, try using the navigation'
+        return 'You either tried some shady route or you came here by mistake.\nWhichever it is, try using the navigation';
     }
-  }
+  };
   const getErrorImage = (): string => {
     switch (statusCode) {
       case 404:
-        return '/images/undraw_page_not_found_su7k.svg'
+        return '/images/undraw_page_not_found_su7k.svg';
       case 401:
-        return '/images/undraw_unauthorized_yr7a.svg'
+        return '/images/undraw_unauthorized_yr7a.svg';
       case 409:
-        return ''
+        return '';
       default:
-        return '/images/undraw_page_not_found_su7k.svg'
+        return '/images/undraw_page_not_found_su7k.svg';
     }
-  }
+  };
 
   return (
     <div className={classes.root}>
@@ -83,15 +83,15 @@ const Error: NextPage<Props> = ({ statusCode, statusMessage }) => {
         </Grid>
       </Grid>
     </div>
-  )
-}
+  );
+};
 
 Error.getInitialProps = async ({ props, res, err }: any) => {
-  const statusCode = res ? res.statusCode : err ? err.statusCode : 404
+  const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
   return {
     ...props,
     statusCode: statusCode,
-  }
-}
+  };
+};
 
-export default Error
+export default Error;

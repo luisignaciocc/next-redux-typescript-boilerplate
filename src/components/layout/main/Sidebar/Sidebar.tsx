@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import clsx from 'clsx'
+import React from 'react';
+import clsx from 'clsx';
 import {
   Button,
   Hidden,
@@ -7,17 +7,15 @@ import {
   Typography,
   Divider,
   Drawer,
-} from '@material-ui/core'
-import DashboardIcon from '@material-ui/icons/Dashboard'
-import PeopleIcon from '@material-ui/icons/People'
-import WorkIcon from '@material-ui/icons/Work'
-import VideocamIcon from '@material-ui/icons/Videocam'
-import WhatshotIcon from '@material-ui/icons/Whatshot'
-import ExploreIcon from '@material-ui/icons/Explore'
-import { Profile, SidebarNav } from './components'
-import palette from '../../../../themes/main/palette'
-import { AuthContext } from 'src/contexts'
-import InputIcon from '@material-ui/icons/Input'
+} from '@material-ui/core';
+import BarChartIcon from '@material-ui/icons/BarChart';
+import GroupIcon from '@material-ui/icons/Group';
+import LocalMallIcon from '@material-ui/icons/LocalMall';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import SettingsIcon from '@material-ui/icons/Settings';
+import { Profile, SidebarNav } from './';
+import palette from 'src/themes/main/palette';
+import InputIcon from '@material-ui/icons/Input';
 
 const useStyles = makeStyles((theme) => ({
   drawer: {
@@ -44,58 +42,47 @@ const useStyles = makeStyles((theme) => ({
   nav: {
     marginBottom: theme.spacing(2),
   },
-}))
+}));
 
 type Props = {
-  className?: string
-  onClose?: () => any
-  open: boolean
-  variant: 'permanent' | 'persistent' | 'temporary'
-}
+  className?: string;
+  onClose?: () => any;
+  open: boolean;
+  variant: 'permanent' | 'persistent' | 'temporary';
+};
 
 const Sidebar = (props: Props) => {
-  const { open, variant, onClose, className, ...rest } = props
-  const { handleLogout } = useContext(AuthContext)
+  const { open, variant, onClose, className, ...rest } = props;
 
-  const classes = useStyles()
+  const classes = useStyles();
 
   const pages = [
     {
-      title: 'Panel',
+      title: 'Dashboard',
       href: '/dashboard',
-      icon: <DashboardIcon />,
+      icon: <BarChartIcon />,
     },
     {
-      title: 'Clientes',
+      title: 'Customers',
       href: '/customers',
-      icon: <WorkIcon />,
+      icon: <GroupIcon />,
     },
     {
-      title: 'Usuarios',
-      href: '/users',
-      icon: <PeopleIcon />,
+      title: 'Products',
+      href: '/products',
+      icon: <LocalMallIcon />,
     },
     {
-      title: 'Alertas',
-      href: '/alerts',
-      icon: <WhatshotIcon />,
+      title: 'Acount',
+      href: '/acount',
+      icon: <AccountCircleIcon />,
     },
     {
-      title: 'Cámaras',
-      href: '/cameras',
-      icon: <VideocamIcon />,
+      title: 'Settings',
+      href: '/settings',
+      icon: <SettingsIcon />,
     },
-    {
-      title: 'Mapa',
-      href: '/map',
-      icon: <ExploreIcon />,
-    },
-    /* {
-      title: 'Centro de Seguridad',
-      href: '/security',
-      icon: <SecurityIcon />
-    }, */
-  ]
+  ];
 
   return (
     <Drawer
@@ -113,12 +100,14 @@ const Sidebar = (props: Props) => {
           pages={pages}
           onItemClick={onClose}
         />
-        <Hidden mdUp>
+        <Hidden lgUp>
           <Divider className={classes.divider} />
           <Button
             variant="text"
             startIcon={<InputIcon color="error" fontSize="small" />}
-            onClick={() => handleLogout()}
+            onClick={() => {
+              return true;
+            }}
           >
             <Typography color="error" className={classes.logout}>
               Cerrar Sesión
@@ -127,7 +116,7 @@ const Sidebar = (props: Props) => {
         </Hidden>
       </div>
     </Drawer>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;

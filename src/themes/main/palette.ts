@@ -1,7 +1,7 @@
-import { colors } from '@material-ui/core'
+import { colors } from '@material-ui/core';
 
-const white = '#FFFFFF'
-const black = '#000000'
+const white = '#FFFFFF';
+const black = '#000000';
 
 export default {
   black,
@@ -53,4 +53,4 @@ export default {
   },
   icon: colors.blueGrey[600],
   divider: colors.grey[200],
-}
+};

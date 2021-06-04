@@ -1,4 +1,4 @@
-import palette from '../palette'
+import palette from '../palette';
 
 export default {
   root: {
@@ -11,4 +11,4 @@ export default {
       },
     },
   },
-}
+};

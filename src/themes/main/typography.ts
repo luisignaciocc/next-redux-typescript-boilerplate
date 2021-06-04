@@ -1,5 +1,5 @@
-import palette from './palette'
-import { TypographyOptions } from '@material-ui/core/styles/createTypography'
+import palette from './palette';
+import { TypographyOptions } from '@material-ui/core/styles/createTypography';
 
 export default {
   h1: {
@@ -81,4 +81,4 @@ export default {
     lineHeight: '13px',
     textTransform: 'uppercase',
   },
-} as TypographyOptions
+} as TypographyOptions;

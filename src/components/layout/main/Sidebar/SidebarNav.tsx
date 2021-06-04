@@ -1,11 +1,11 @@
 /* eslint-disable react/no-multi-comp */
 /* eslint-disable react/display-name */
-import React, { forwardRef } from 'react'
-import clsx from 'clsx'
-import Link, { LinkProps } from 'src/components/layout/Link'
-import { makeStyles } from '@material-ui/core'
-import { List, ListItem, Button, colors } from '@material-ui/core'
-import palette from 'src/themes/main/palette'
+import React, { forwardRef } from 'react';
+import clsx from 'clsx';
+import Link, { LinkProps } from 'src/components/layout/Link';
+import { makeStyles } from '@material-ui/core';
+import { List, ListItem, Button, colors } from '@material-ui/core';
+import palette from 'src/themes/main/palette';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -38,28 +38,28 @@ const useStyles = makeStyles((theme) => ({
       color: theme.palette.primary.main,
     },
   },
-}))
+}));
 
 const CustomRouterLink = forwardRef((props: LinkProps, ref: any) => (
   <div ref={ref} style={{ flexGrow: 1 }}>
     <Link {...props} />
   </div>
-))
+));
 
 type Props = {
-  className?: string
-  pages: any[]
-  onItemClick?: () => any
-}
+  className?: string;
+  pages: any[];
+  onItemClick?: () => any;
+};
 
 const SidebarNav = (props: Props) => {
-  const { pages, className, onItemClick, ...rest } = props
+  const { pages, className, onItemClick, ...rest } = props;
 
-  const classes = useStyles()
+  const classes = useStyles();
 
   const handleItemClick = () => {
-    onItemClick && onItemClick()
-  }
+    onItemClick && onItemClick();
+  };
 
   return (
     <List {...rest} className={clsx(classes.root, className)}>
@@ -78,7 +78,7 @@ const SidebarNav = (props: Props) => {
         </ListItem>
       ))}
     </List>
-  )
-}
+  );
+};
 
-export default SidebarNav
+export default SidebarNav;

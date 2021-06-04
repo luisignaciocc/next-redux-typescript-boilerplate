@@ -1,14 +1,13 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
+import type { NextPage } from 'next';
+import Head from 'next/head';
 
-import Counter from 'src/components/Counter'
-import { useAppSelector } from 'src/hooks'
-import { selectIsLoggedIn } from 'src/redux/slices'
-import styles from 'src/styles/Home.module.scss'
+import Counter from 'src/components/Counter';
+import styles from 'src/styles/Home.module.scss';
+
+import withLayout from 'src/hocs/withLayout';
+import withProtectedComponent from 'src/hocs/withProtectedComponent';
 
 const IndexPage: NextPage = () => {
-  const isLoged = useAppSelector(selectIsLoggedIn)
-  console.log('isLoged', isLoged)
   return (
     <div className={styles.container}>
       <Head>
@@ -61,7 +60,7 @@ const IndexPage: NextPage = () => {
         </span>
       </header>
     </div>
-  )
-}
+  );
+};
 
-export default IndexPage
+export default withProtectedComponent(withLayout(IndexPage, 'main'));

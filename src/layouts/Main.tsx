@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import clsx from 'clsx'
-import { makeStyles, useTheme } from '@material-ui/core'
-import { useMediaQuery } from '@material-ui/core'
+import React, { useState } from 'react';
+import clsx from 'clsx';
+import { makeStyles, useTheme } from '@material-ui/core';
+import { useMediaQuery } from '@material-ui/core';
 
-import { Sidebar, Topbar, Footer } from 'src/components/layout/'
-import Error from 'src/pages/_error'
+import { Sidebar, TopBar, Footer } from 'src/components/layout/main';
+import Error from 'src/pages/_error';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,30 +24,30 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(4),
     height: '100%',
   },
-}))
+}));
 
 const Main = (props: any) => {
-  const { children /* , error */ } = props
+  const { children } = props;
 
-  const classes = useStyles()
-  const theme = useTheme()
+  const classes = useStyles();
+  const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('lg'), {
     defaultMatches: true,
-  })
+  });
 
-  const [openSidebar, setOpenSidebar] = useState(false)
+  const [openSidebar, setOpenSidebar] = useState(false);
 
   const handleSidebarOpen = () => {
-    setOpenSidebar(true)
-  }
+    setOpenSidebar(true);
+  };
 
   const handleSidebarClose = () => {
-    setOpenSidebar(false)
-  }
+    setOpenSidebar(false);
+  };
 
-  const shouldOpenSidebar = isDesktop ? true : openSidebar
+  const shouldOpenSidebar = isDesktop ? true : openSidebar;
 
-  let error = false
+  const error = false;
 
   return !error ? (
     <div
@@ -56,7 +56,7 @@ const Main = (props: any) => {
         [classes.shiftContent]: isDesktop,
       })}
     >
-      <Topbar onSidebarOpen={handleSidebarOpen} />
+      <TopBar onSidebarOpen={handleSidebarOpen} />
       <Sidebar
         onClose={handleSidebarClose}
         open={shouldOpenSidebar}
@@ -69,7 +69,7 @@ const Main = (props: any) => {
     </div>
   ) : (
     <Error statusCode={404} />
-  )
-}
+  );
+};
 
-export default Main
+export default Main;

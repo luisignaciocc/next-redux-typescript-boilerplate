@@ -1,26 +1,42 @@
-import React from 'react'
-import clsx from 'clsx'
-import { makeStyles } from '@material-ui/core'
-import { AppBar, Toolbar } from '@material-ui/core'
-import { Link } from 'src/components/layout'
+import React from 'react';
+import clsx from 'clsx';
+import { IconButton, makeStyles } from '@material-ui/core';
+import { AppBar, Toolbar } from '@material-ui/core';
+import InputIcon from '@material-ui/icons/Input';
+import { Link } from 'src/components/layout';
+import { useAppDispatch } from 'src/hooks';
+import { logoutAction } from 'src/redux/slices';
 
-const useStyles = makeStyles((_theme) => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     boxShadow: 'none',
   },
   brand: {
     height: 30,
   },
-}))
+  flexGrow: {
+    flexGrow: 1,
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  signOutButton: {
+    marginLeft: theme.spacing(1),
+  },
+}));
 
 type Props = {
-  className?: string
-}
+  className?: string;
+};
 
 const Topbar = (props: Props): React.ReactElement => {
-  const { className, ...rest } = props
+  const { className, ...rest } = props;
 
-  const classes = useStyles()
+  const classes = useStyles();
+  const dispatch = useAppDispatch();
+
+  const handleSignOut = () => {
+    dispatch(logoutAction());
+  };
 
   return (
     <AppBar
@@ -34,12 +50,20 @@ const Topbar = (props: Props): React.ReactElement => {
           <img
             className={classes.brand}
             alt="Logo"
-            src="/images/logo-chilecompra-original.png"
+            src="/images/nextjs-3.svg"
           />
         </Link>
+        <div className={classes.flexGrow}></div>
+        <IconButton
+          className={classes.signOutButton}
+          color="inherit"
+          onClick={handleSignOut}
+        >
+          <InputIcon />
+        </IconButton>
       </Toolbar>
     </AppBar>
-  )
-}
+  );
+};
 
-export default Topbar
+export default Topbar;

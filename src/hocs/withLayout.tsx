@@ -1,7 +1,7 @@
-import React from 'react'
-import { MainLayout, MinimalLayout } from '../layouts'
+import React from 'react';
+import { MainLayout, MinimalLayout, DefaultLayout } from 'src/layouts/';
 
-type LayoutType = 'main' | 'minimal'
+type LayoutType = 'main' | 'minimal' | 'default';
 
 const WithLayout = (WrappedComponent: any, layout: LayoutType) => {
   return class extends React.Component {
@@ -11,18 +11,28 @@ const WithLayout = (WrappedComponent: any, layout: LayoutType) => {
     }
 
     render() {
-      // Envuelve el componente de entrada en un contenedor, sin mutarlo. ¡Bien!
-      return layout === 'main' ? (
-        <MainLayout>
-          <WrappedComponent {...this.props} />
-        </MainLayout>
-      ) : (
-        <MinimalLayout>
-          <WrappedComponent {...this.props} />
-        </MinimalLayout>
-      )
+      switch (layout) {
+        case 'main':
+          return (
+            <MainLayout>
+              <WrappedComponent {...this.props} />
+            </MainLayout>
+          );
+        case 'minimal':
+          return (
+            <MinimalLayout>
+              <WrappedComponent {...this.props} />
+            </MinimalLayout>
+          );
+        default:
+          return (
+            <DefaultLayout>
+              <WrappedComponent {...this.props} />
+            </DefaultLayout>
+          );
+      }
     }
-  }
-}
+  };
+};
 
-export default WithLayout
+export default WithLayout;
