@@ -13,6 +13,7 @@ import {
   // Checkbox,
   IconButton,
 } from '@material-ui/core';
+import Alert from '@material-ui/lab/Alert';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { signIn } from 'src/services/';
@@ -49,10 +50,13 @@ const useStyle = makeStyles((theme) => ({
   submitButton: {
     marginTop: theme.spacing(2),
   },
+  infoAlert: {
+    marginTop: 24,
+  },
 }));
 
 const LoginPage: () => React.ReactElement | null = () => {
-  const clases = useStyle();
+  const classes = useStyle();
 
   const isLoged = useAppSelector(selectIsLoggedIn);
   const dispatch = useAppDispatch();
@@ -97,7 +101,7 @@ const LoginPage: () => React.ReactElement | null = () => {
     if (!hasErrors) {
       const response = await signIn(formBody);
       if (response.token) {
-        dispatch(loginAction({ user: null, token: response.token }));
+        dispatch(loginAction({ user: response.email, token: response.token }));
       } else {
         setFormBodyErrors({ ...formBodyErrors, email: 'Error fetching' });
       }
@@ -107,7 +111,7 @@ const LoginPage: () => React.ReactElement | null = () => {
 
   useEffect(() => {
     if (isLoged) {
-      window.location.href = '/redux-counter';
+      window.location.href = '/';
     } else {
       setLoading(false);
     }
@@ -117,15 +121,15 @@ const LoginPage: () => React.ReactElement | null = () => {
     <Container>
       <Grid
         container
-        className={clases.root}
+        className={classes.root}
         alignContent="center"
         justify="center"
       >
-        <Grid item className={clases.formContainer} xs={12} sm={6} md={4}>
-          <Card className={clases.card}>
-            <CardContent className={clases.cardContent}>
-              <div className={clases.cardHeader}>
-                {/* <img className={clases.brand} src='/images/brand.png' /> */}
+        <Grid item className={classes.formContainer} xs={12} sm={6} md={4}>
+          <Card className={classes.card}>
+            <CardContent className={classes.cardContent}>
+              <div className={classes.cardHeader}>
+                {/* <img className={classes.brand} src='/images/brand.png' /> */}
                 <Typography variant="h3" color="secondary">
                   Iniciar Sesión
                 </Typography>
@@ -134,7 +138,7 @@ const LoginPage: () => React.ReactElement | null = () => {
                 <TextField
                   error={formBodyErrors.email !== ''}
                   helperText={formBodyErrors.email}
-                  className={clases.input}
+                  className={classes.input}
                   name="email"
                   label="Email *"
                   onChange={(e) =>
@@ -145,7 +149,7 @@ const LoginPage: () => React.ReactElement | null = () => {
                 <TextField
                   error={formBodyErrors.password !== ''}
                   helperText={formBodyErrors.password}
-                  className={clases.input}
+                  className={classes.input}
                   name="password"
                   label="Contraseña *"
                   type={showPassword ? 'text' : 'password'}
@@ -161,7 +165,7 @@ const LoginPage: () => React.ReactElement | null = () => {
                   }}
                 />
                 {/* <FormControlLabel
-                  className={clases.checkbox}
+                  className={classes.checkbox}
                   control={
                     <Checkbox name="remember" />
                   } label="Recuerdame" /> */}
@@ -170,12 +174,15 @@ const LoginPage: () => React.ReactElement | null = () => {
                   variant="contained"
                   fullWidth
                   color="primary"
-                  className={clases.submitButton}
+                  className={classes.submitButton}
                   type="submit"
                 >
                   Ingresar
                 </Button>
               </form>
+              <Alert severity="info" className={classes.infoAlert}>
+                Ingresa con cualquier usuario y contraseña
+              </Alert>
             </CardContent>
           </Card>
         </Grid>

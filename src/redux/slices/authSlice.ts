@@ -42,4 +42,6 @@ export const selectIsLoggedIn = (state: RootState): boolean =>
 export const selectToken = (state: RootState): string | null =>
   state.auth.token;
 
+export const selectUser = (state: RootState): string | null => state.auth.user;
+
 export const authReducer = authSlice.reducer;

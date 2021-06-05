@@ -1,5 +1,5 @@
 import jwtDecode from 'jwt-decode';
-import { selectToken } from 'src/redux/slices';
+import { selectToken, selectUser } from 'src/redux/slices';
 import { useAppSelector } from './useRedux';
 
 type DecodedToken = {
@@ -40,3 +40,5 @@ export const useAuth = (token: string) => {
 };
 
 export const useToken = () => useAppSelector(selectToken);
+
+export const useAuthUser = () => useAppSelector(selectUser);

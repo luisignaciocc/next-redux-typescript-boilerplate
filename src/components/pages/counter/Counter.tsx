@@ -51,16 +51,12 @@ function Counter(): React.ReactElement {
         </button>
         <button
           className={styles.asyncButton}
-          // eslint-disable-next-line
-          // @ts-ignore
           onClick={() => dispatch(incrementAsync(incrementValue))}
         >
           Add Async
         </button>
         <button
           className={styles.button}
-          // eslint-disable-next-line
-          // @ts-ignore
           onClick={() => dispatch(incrementIfOdd(incrementValue))}
         >
           Add If Odd

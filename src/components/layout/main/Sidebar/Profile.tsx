@@ -1,7 +1,9 @@
-import React, { /* useContext, */ useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
+import Avatar from 'react-nice-avatar';
 import { makeStyles } from '@material-ui/core';
-import { Avatar, Typography } from '@material-ui/core';
+import { Avatar as MUIAvatar, Typography } from '@material-ui/core';
+import { useAuthUser } from 'src/hooks';
 
 type Props = {
   className?: string;
@@ -35,51 +37,41 @@ const Profile = (props: Props) => {
   const { className, ...rest } = props;
 
   const classes = useStyles();
+  const authUser = useAuthUser();
 
   const [user, setUser] = useState({
-    name: 'Cargando...',
-    surname: '',
+    email: 'Cargando...',
     avatar: '',
-    bio: '',
   });
 
   useEffect(() => {
-    //   if (profile) {
-    setUser({
-      name: 'Test',
-      surname: 'User',
-      avatar: '',
-      bio: 'Admin',
-    });
-    //   }
-  }, []);
+    if (authUser) {
+      setUser({
+        email: authUser.split('@')[0],
+        avatar: '',
+      });
+    }
+  }, [authUser]);
 
   return (
     <div {...rest} className={clsx(classes.root, className)}>
       {user.avatar ? (
-        <Avatar
+        <MUIAvatar
           variant="square"
           alt="Person"
           className={classes.avatar}
-          // component={RouterLink}
           src={user.avatar}
           imgProps={{
             className: classes.avatarImg,
           }}
-        >
-          {user.name.charAt(0) +
-            (user.surname ? user.surname.charAt(0) : user.name.charAt(1))}
-        </Avatar>
+        />
       ) : (
-        <Avatar alt="NA" className={classes.avatarDefault} src={user.avatar}>
-          {user.name.charAt(0) +
-            (user.surname ? user.surname.charAt(0) : user.name.charAt(1))}
-        </Avatar>
+        <Avatar className={classes.avatarDefault} />
       )}
       <Typography className={classes.name} variant="h4">
-        {`${user.name} ${user.surname ?? ''}`}
+        {user.email}
       </Typography>
-      <Typography variant="body2">{user.bio}</Typography>
+      <Typography variant="body2">Guest</Typography>
     </div>
   );
 };

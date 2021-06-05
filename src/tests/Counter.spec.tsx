@@ -10,7 +10,7 @@ jest.mock('../services/counterAPI', () => ({
 }));
 
 import { makeStore } from 'src/redux/store';
-import Counter from 'src/components/Counter';
+import Counter from 'src/components/pages/counter/Counter';
 
 describe('<Counter />', () => {
   it('renders the component', () => {

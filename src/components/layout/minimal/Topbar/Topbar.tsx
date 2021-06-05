@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: 'none',
   },
   brand: {
-    height: 30,
+    height: 50,
   },
   flexGrow: {
     flexGrow: 1,
@@ -42,7 +42,7 @@ const Topbar = (props: Props): React.ReactElement => {
     <AppBar
       {...rest}
       className={clsx(classes.root, className)}
-      color="inherit"
+      color="secondary"
       position="static"
     >
       <Toolbar>
@@ -50,7 +50,7 @@ const Topbar = (props: Props): React.ReactElement => {
           <img
             className={classes.brand}
             alt="Logo"
-            src="/images/nextjs-3.svg"
+            src="/images/next-redux.png"
           />
         </Link>
         <div className={classes.flexGrow}></div>

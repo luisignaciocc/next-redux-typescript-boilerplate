@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: 'none',
   },
   brand: {
-    height: 30,
+    height: 50,
   },
   flexGrow: {
     flexGrow: 1,
@@ -46,14 +46,18 @@ const Topbar = (props: Props) => {
   };
 
   return (
-    <AppBar color="inherit" {...rest} className={clsx(classes.root, className)}>
+    <AppBar
+      color="secondary"
+      {...rest}
+      className={clsx(classes.root, className)}
+    >
       <Toolbar>
         <Hidden mdDown>
           <Link href="/">
             <img
               className={classes.brand}
               alt="Logo"
-              src="/images/nextjs-3.svg"
+              src="/images/next-redux.png"
             />
           </Link>
         </Hidden>

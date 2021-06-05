@@ -1,4 +1,3 @@
-import 'src/styles/globals.scss';
 import React from 'react';
 import { useStore } from 'react-redux';
 import Head from 'next/head';
@@ -26,7 +25,7 @@ const App = function MyApp(props: AppProps): React.ReactElement {
       @ts-ignore */}
       <PersistGate persistor={store.__persistor} loading={<h3>Loading...</h3>}>
         <Head>
-          <title>React Boilerplate</title>
+          <title>Dashboard Boilerplate</title>
           <meta
             name="viewport"
             content="minimum-scale=1, initial-scale=1, width=device-width"

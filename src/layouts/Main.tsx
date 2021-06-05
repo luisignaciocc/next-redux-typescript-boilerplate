@@ -4,7 +4,6 @@ import { makeStyles, useTheme } from '@material-ui/core';
 import { useMediaQuery } from '@material-ui/core';
 
 import { Sidebar, TopBar, Footer } from 'src/components/layout/main';
-import Error from 'src/pages/_error';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
   wrapper: {
     padding: theme.spacing(4),
-    height: '100%',
+    minHeight: 'calc(100vh - 150px)',
   },
 }));
 
@@ -47,9 +46,7 @@ const Main = (props: any) => {
 
   const shouldOpenSidebar = isDesktop ? true : openSidebar;
 
-  const error = false;
-
-  return !error ? (
+  return (
     <div
       className={clsx({
         [classes.root]: true,
@@ -67,8 +64,6 @@ const Main = (props: any) => {
         <Footer />
       </main>
     </div>
-  ) : (
-    <Error statusCode={404} />
   );
 };
 

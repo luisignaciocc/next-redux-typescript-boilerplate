@@ -8,14 +8,10 @@ import {
   Divider,
   Drawer,
 } from '@material-ui/core';
-import BarChartIcon from '@material-ui/icons/BarChart';
-import GroupIcon from '@material-ui/icons/Group';
-import LocalMallIcon from '@material-ui/icons/LocalMall';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import SettingsIcon from '@material-ui/icons/Settings';
+import ExposureIcon from '@material-ui/icons/Exposure';
+import InputIcon from '@material-ui/icons/Input';
 import { Profile, SidebarNav } from './';
 import palette from 'src/themes/main/palette';
-import InputIcon from '@material-ui/icons/Input';
 
 const useStyles = makeStyles((theme) => ({
   drawer: {
@@ -58,29 +54,9 @@ const Sidebar = (props: Props) => {
 
   const pages = [
     {
-      title: 'Dashboard',
-      href: '/dashboard',
-      icon: <BarChartIcon />,
-    },
-    {
-      title: 'Customers',
-      href: '/customers',
-      icon: <GroupIcon />,
-    },
-    {
-      title: 'Products',
-      href: '/products',
-      icon: <LocalMallIcon />,
-    },
-    {
-      title: 'Acount',
-      href: '/acount',
-      icon: <AccountCircleIcon />,
-    },
-    {
-      title: 'Settings',
-      href: '/settings',
-      icon: <SettingsIcon />,
+      title: 'Counter',
+      href: '/counter',
+      icon: <ExposureIcon />,
     },
   ];
 
