@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import Avatar from 'react-nice-avatar';
 import { makeStyles } from '@material-ui/core';
 import { Avatar as MUIAvatar, Typography } from '@material-ui/core';
-import { useAuthUser } from 'src/hooks';
+import { useAuthUser, useAvatarConfig } from 'src/hooks';
 
 type Props = {
   className?: string;
@@ -38,6 +38,7 @@ const Profile = (props: Props) => {
 
   const classes = useStyles();
   const authUser = useAuthUser();
+  const avatarConfig = useAvatarConfig();
 
   const [user, setUser] = useState({
     email: 'Cargando...',
@@ -66,7 +67,7 @@ const Profile = (props: Props) => {
           }}
         />
       ) : (
-        <Avatar className={classes.avatarDefault} />
+        <Avatar className={classes.avatarDefault} {...avatarConfig} />
       )}
       <Typography className={classes.name} variant="h4">
         {user.email}

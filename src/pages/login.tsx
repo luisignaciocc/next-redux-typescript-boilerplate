@@ -181,7 +181,7 @@ const LoginPage: () => React.ReactElement | null = () => {
                 </Button>
               </form>
               <Alert severity="info" className={classes.infoAlert}>
-                Ingresa con cualquier usuario y contraseña
+                Ingresa con cualquier combinación de usuario y contraseña
               </Alert>
             </CardContent>
           </Card>

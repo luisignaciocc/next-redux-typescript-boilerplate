@@ -6,7 +6,5 @@ module.exports = {
   sassOptions: {
     includePaths: stylePath,
   },
-  env: {
-    BASE_SERVICE_URL: process.env.BASE_SERVICE_URL,
-  },
+  env: {},
 };
